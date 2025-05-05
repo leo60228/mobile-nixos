@@ -17,15 +17,17 @@
             hash = "sha256:0iq4mafs6fhlxnb7fhia6p4rbk2kdv0r5417db3fzmirh3lj0cd0";
           };
         } ''
-          src="$src/overlay-strongbad/chromeos-base/chromeos-bsp-strongbad/files/wormdingler/audio/ucm-config/"
-          install -Dm644 $src/sc7180-rt5682-max98357a-1mic/HiFi.conf \
-            $out/share/alsa/ucm2/conf.d/sc7180-rt5682-max98357a-1mic/HiFi.conf
-          install -Dm644 $src/sc7180-rt5682-max98357a-1mic/sc7180-rt5682-max98357a-1mic.conf \
-            $out/share/alsa/ucm2/conf.d/sc7180-rt5682-max98357a-1mic/sc7180-rt5682-max98357a-1mic.conf
+          src1="$src/overlay-strongbad/chromeos-base/chromeos-bsp-strongbad/files/homestar/audio/ucm-config/"
+          install -Dm644 ${./HiFi.conf} \
+            $out/share/alsa/ucm2/conf.d/SC7180/HiFi.conf
+          install -Dm644 $src1/sc7180-rt5682-max98357a-1mic/sc7180-rt5682-max98357a-1mic.conf \
+            $out/share/alsa/ucm2/conf.d/SC7180/sc7180-rt5682-max98357a-1mic.conf
+          sed -i "s;HiFi\.conf;/conf.d/SC7180/HiFi.conf;g;1iSyntax 2" $out/share/alsa/ucm2/conf.d/SC7180/sc7180-rt5682-max98357a-1mic.conf
 
-          install -Dm644 $src/sc7180-rt5682s-max98357a-1mic/HiFi.conf \
+          src2="$src/overlay-strongbad/chromeos-base/chromeos-bsp-strongbad/files/wormdingler/audio/ucm-config/"
+          install -Dm644 $src2/sc7180-rt5682s-max98357a-1mic/HiFi.conf \
             $out/share/alsa/ucm2/conf.d/sc7180-rt5682s-max98357a-1mic/HiFi.conf
-          install -Dm644 $src/sc7180-rt5682s-max98357a-1mic/sc7180-rt5682s-max98357a-1mic.conf \
+          install -Dm644 $src2/sc7180-rt5682s-max98357a-1mic/sc7180-rt5682s-max98357a-1mic.conf \
             $out/share/alsa/ucm2/conf.d/sc7180-rt5682s-max98357a-1mic/sc7180-rt5682s-max98357a-1mic.conf
         ''
       ) {};
